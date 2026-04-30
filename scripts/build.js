@@ -12,7 +12,7 @@ const DIST_DIR = "./dist";
 fs.rmSync(DIST_DIR, { recursive: true, force: true });
 fs.mkdirSync(DIST_DIR, { recursive: true });
 
-const REQUIRED_FIELDS = ["title", "date"];
+const REQUIRED_FIELDS = ["title", "date", "week"];
 
 function validateFrontMatter(file, data) {
   const missing = REQUIRED_FIELDS.filter((f) => !data[f]);
@@ -57,6 +57,7 @@ for (const file of fs.readdirSync(POSTS_DIR)) {
 
   const page = applyTemplate(template, {
     title: data.title,
+    week: data.week,
     date: format(new Date(data.date), "yyyy-MM-dd"),
     author: data.author ?? "",
     content: html,
@@ -68,42 +69,72 @@ for (const file of fs.readdirSync(POSTS_DIR)) {
   posts.push({ ...data, slug });
 }
 
-/* Create Blog Index */
-posts.sort((a, b) => new Date(b.date) - new Date(a.date));
+/* Group posts by week */
+const weeks = {};
+for (const post of posts) {
+  const week = String(post.week);
+  if (!weeks[week]) weeks[week] = [];
+  weeks[week].push(post);
+}
 
-const template = fs.readFileSync("templates/index.html", "utf8");
+/* Sort posts within each week by date */
+for (const week of Object.values(weeks)) {
+  week.sort((a, b) => new Date(a.date) - new Date(b.date));
+}
 
-const postListItemTemplate = fs.readFileSync(
-  "templates/postListItems.html",
-  "utf8",
+const postListItemTemplate = fs.readFileSync("templates/postListItems.html", "utf8");
+
+/* Create a page for each week */
+const weekPageTemplate = fs.readFileSync("templates/weekPage.html", "utf8");
+
+for (const [weekNum, weekPosts] of Object.entries(weeks)) {
+  const postsHtml = weekPosts
+    .map((p) => {
+      const tagsHtml =
+        p.tags?.map((tag) => `<span class="tag">${tag}</span>`).join("") ?? "";
+      return applyTemplate(postListItemTemplate, {
+        slug: p.slug,
+        title: p.title,
+        author: p.author ?? "",
+        date: format(new Date(p.date), "yyyy-MM-dd"),
+        summary: p.summary ?? "",
+        tags: tagsHtml,
+      });
+    })
+    .join("");
+
+  const page = applyTemplate(weekPageTemplate, {
+    weekNum,
+    postList: postsHtml,
+  });
+
+  fs.writeFileSync(`${DIST_DIR}/week${weekNum}.html`, page);
+}
+
+/* Create Blog Index with week cards */
+const indexTemplate = fs.readFileSync("templates/index.html", "utf8");
+const weekCardTemplate = fs.readFileSync("templates/weekCard.html", "utf8");
+
+const sortedWeeks = Object.entries(weeks).sort(
+  ([a], [b]) => Number(a) - Number(b),
 );
 
-const postsHtml = posts
-  .map((p) => {
-    // Generate tags HTML
-    const tagsHtml =
-      p.tags?.map((tag) => `<span class="tag">${tag}</span>`).join("") ?? "";
+const weeksHtml = sortedWeeks
+  .map(([weekNum, weekPosts]) =>
+    applyTemplate(weekCardTemplate, {
+      weekNum,
+      postCount: weekPosts.length,
+      postCountPlural: weekPosts.length === 1 ? "" : "s",
+    }),
+  )
+  .join("");
 
-    // Use the template for each <li>
-    return applyTemplate(postListItemTemplate, {
-      slug: p.slug,
-      title: p.title,
-      author: p.author,
-      date: format(new Date(p.date), "yyyy-MM-dd"), // Format the date as needed
-      summary: p.summary,
-      tags: tagsHtml, // Replace {{tags}} with the generated tags HTML
-    });
-  })
-  .join(""); // Combine all <li> items into a single string
-
-const index = applyTemplate(template, {
-  postList: postsHtml,
+const index = applyTemplate(indexTemplate, {
+  weekList: weeksHtml,
 });
 
 fs.writeFileSync(`${DIST_DIR}/index.html`, index);
 
-// Simple Node.js built-in method:
 fs.cpSync("assets", `${DIST_DIR}/assets`, { recursive: true });
-
 
 console.log(chalk.green("✔ Build complete"));

@@ -2,20 +2,27 @@
 <html>
 
 <head>
-    <title>My Blog</title>
+    <title>Natasha's Blog</title>
     <link rel="stylesheet" href="assets/style.css">
 </head>
 
 <body>
 
+    <header class="site-header">
+        <nav class="site-nav">
+            <span class="nav-home">Natasha's Blog</span>
+        </nav>
+    </header>
+
     <main>
+        <div class="index-hero">
+            <h1>Natasha's Blog</h1>
+            <p class="index-subtitle">DECO2017 — Weekly Reflections</p>
+        </div>
 
-        <h1>Natasha's Blog</h1>
-
-        <ul class="post-list">
-            {{postList}}
-        </ul>
-
+        <div class="week-grid">
+            {{weekList}}
+        </div>
     </main>
 
 </body>

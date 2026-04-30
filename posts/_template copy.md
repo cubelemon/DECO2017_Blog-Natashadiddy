@@ -1,5 +1,6 @@
 ---
 title: Post Title
+week: 5
 date: 2026-02-14
 author: Your Name
 summary: Short description

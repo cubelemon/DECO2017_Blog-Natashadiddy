@@ -10,17 +10,27 @@
 
 <body>
 
+    <header class="site-header">
+        <nav class="site-nav">
+            <a href="index.html" class="nav-home">Natasha's Blog</a>
+            <span class="nav-sep">/</span>
+            <a href="week{{week}}.html" class="nav-week">Week {{week}}</a>
+            <span class="nav-sep">/</span>
+            <span class="nav-current">{{title}}</span>
+        </nav>
+    </header>
+
     <main>
         <h1>{{title}}</h1>
-        <p class="date">{{date}}</p>
-        <p class="author">{{author}}</p>
+
+        <div class="post-meta">
+            <span class="date">{{date}}</span>
+            <span class="author">{{author}}</span>
+        </div>
 
         <hr>
         <article>
-
-            <!-- BLOG CONTENT INSERTED HERE -->
             {{content}}
-
         </article>
         <hr>
 
@@ -29,7 +39,6 @@
                 {{tags}}
             </ul>
         </footer>
-
     </main>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>

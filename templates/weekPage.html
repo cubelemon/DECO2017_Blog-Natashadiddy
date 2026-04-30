@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Week {{weekNum}} — Natasha's Blog</title>
+    <link rel="stylesheet" href="assets/style.css">
+</head>
+
+<body>
+
+    <header class="site-header">
+        <nav class="site-nav">
+            <a href="index.html" class="nav-home">Natasha's Blog</a>
+            <span class="nav-sep">/</span>
+            <span class="nav-current">Week {{weekNum}}</span>
+        </nav>
+    </header>
+
+    <main>
+        <h1 class="week-title">Week {{weekNum}}</h1>
+
+        <ul class="post-list">
+            {{postList}}
+        </ul>
+    </main>
+
+</body>
+
+</html>
