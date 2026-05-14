@@ -1,0 +1,64 @@
+<svg width="680" height="310" viewBox="0 0 680 310" xmlns="http://www.w3.org/2000/svg" font-family="system-ui, sans-serif">
+  <rect width="680" height="310" rx="12" fill="#f9f9fb" stroke="#e0e0e0" stroke-width="1"/>
+  <text x="340" y="24" text-anchor="middle" font-size="12" fill="#888" font-style="italic">SEAblings — Evaluation plan</text>
+
+  <!-- Track 1: Usability Testing -->
+  <rect x="20" y="44" width="198" height="248" rx="8" fill="white" stroke="#4f46e5" stroke-width="1.5"/>
+  <rect x="20" y="44" width="198" height="36" rx="8" fill="#4f46e5"/>
+  <rect x="20" y="68" width="198" height="12" fill="#4f46e5"/>
+  <text x="119" y="67" text-anchor="middle" font-size="13" fill="white" font-weight="700">Usability Testing</text>
+
+  <text x="36" y="100" font-size="11" fill="#374151" font-weight="600">Method</text>
+  <text x="36" y="116" font-size="11" fill="#555">Think-aloud sessions</text>
+
+  <text x="36" y="140" font-size="11" fill="#374151" font-weight="600">Participants</text>
+  <text x="36" y="156" font-size="11" fill="#555">3–5 SEA students</text>
+
+  <text x="36" y="180" font-size="11" fill="#374151" font-weight="600">Tasks</text>
+  <text x="36" y="196" font-size="11" fill="#555">Find an ingredient</text>
+  <text x="36" y="212" font-size="11" fill="#555">Post a recipe</text>
+
+  <text x="36" y="236" font-size="11" fill="#374151" font-weight="600">Goal</text>
+  <text x="36" y="252" font-size="11" fill="#555">Map usefulness,</text>
+  <text x="36" y="268" font-size="11" fill="#555">posting flow clarity</text>
+
+  <!-- Track 2: Performance Testing -->
+  <rect x="240" y="44" width="198" height="248" rx="8" fill="white" stroke="#d97706" stroke-width="1.5"/>
+  <rect x="240" y="44" width="198" height="36" rx="8" fill="#d97706"/>
+  <rect x="240" y="68" width="198" height="12" fill="#d97706"/>
+  <text x="339" y="67" text-anchor="middle" font-size="13" fill="white" font-weight="700">Performance Testing</text>
+
+  <text x="256" y="100" font-size="11" fill="#374151" font-weight="600">Tool</text>
+  <text x="256" y="116" font-size="11" fill="#555">Chrome Lighthouse</text>
+
+  <text x="256" y="140" font-size="11" fill="#374151" font-weight="600">Target</text>
+  <text x="256" y="156" font-size="11" fill="#555">&lt;1s load (feed + map)</text>
+
+  <text x="256" y="180" font-size="11" fill="#374151" font-weight="600">Risk area</text>
+  <text x="256" y="196" font-size="11" fill="#555">Interactive map</text>
+  <text x="256" y="212" font-size="11" fill="#555">(most JS-heavy)</text>
+
+  <text x="256" y="236" font-size="11" fill="#374151" font-weight="600">Scope</text>
+  <text x="256" y="252" font-size="11" fill="#555">Load time, best</text>
+  <text x="256" y="268" font-size="11" fill="#555">practices, SEO</text>
+
+  <!-- Track 3: Accessibility Auditing -->
+  <rect x="460" y="44" width="202" height="248" rx="8" fill="white" stroke="#059669" stroke-width="1.5"/>
+  <rect x="460" y="44" width="202" height="36" rx="8" fill="#059669"/>
+  <rect x="460" y="68" width="202" height="12" fill="#059669"/>
+  <text x="561" y="67" text-anchor="middle" font-size="13" fill="white" font-weight="700">Accessibility Audit</text>
+
+  <text x="476" y="100" font-size="11" fill="#374151" font-weight="600">Tools</text>
+  <text x="476" y="116" font-size="11" fill="#555">WAVE / axe DevTools</text>
+
+  <text x="476" y="140" font-size="11" fill="#374151" font-weight="600">Standard</text>
+  <text x="476" y="156" font-size="11" fill="#555">WCAG 2.1 AA</text>
+
+  <text x="476" y="180" font-size="11" fill="#374151" font-weight="600">Checks</text>
+  <text x="476" y="196" font-size="11" fill="#555">Alt text, 4.5:1 contrast</text>
+  <text x="476" y="212" font-size="11" fill="#555">Keyboard navigation</text>
+  <text x="476" y="228" font-size="11" fill="#555">Responsive (mobile)</text>
+
+  <text x="476" y="252" font-size="11" fill="#374151" font-weight="600">Priority</text>
+  <text x="476" y="268" font-size="11" fill="#555">Map + feed pages</text>
+</svg>

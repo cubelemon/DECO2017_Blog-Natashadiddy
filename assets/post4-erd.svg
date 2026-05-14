@@ -1,0 +1,91 @@
+<svg width="720" height="380" viewBox="0 0 720 380" xmlns="http://www.w3.org/2000/svg" font-family="system-ui, sans-serif">
+  <defs>
+    <marker id="arr" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#4f46e5"/>
+    </marker>
+    <marker id="arr-g" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#059669"/>
+    </marker>
+  </defs>
+
+  <rect width="720" height="380" rx="12" fill="#f9f9fb" stroke="#e0e0e0" stroke-width="1"/>
+  <text x="360" y="24" text-anchor="middle" font-size="12" fill="#888" font-style="italic">SEAblings — Entity Relationship Diagram</text>
+
+  <!-- Helper: table renderer via rects + text -->
+
+  <!-- users table -->
+  <rect x="20" y="44" width="148" height="134" rx="7" fill="white" stroke="#4f46e5" stroke-width="1.5"/>
+  <rect x="20" y="44" width="148" height="30" rx="7" fill="#4f46e5"/>
+  <rect x="20" y="64" width="148" height="10" fill="#4f46e5"/>
+  <text x="94" y="63" text-anchor="middle" font-size="13" fill="white" font-weight="700">users</text>
+  <text x="34" y="92" font-size="11" fill="#374151">🔑 id</text>
+  <text x="34" y="110" font-size="11" fill="#374151">username</text>
+  <text x="34" y="128" font-size="11" fill="#374151">email</text>
+  <text x="34" y="146" font-size="11" fill="#374151">password_hash</text>
+  <text x="34" y="164" font-size="11" fill="#374151">created_at</text>
+
+  <!-- recipes table -->
+  <rect x="216" y="44" width="148" height="150" rx="7" fill="white" stroke="#4f46e5" stroke-width="1.5"/>
+  <rect x="216" y="44" width="148" height="30" rx="7" fill="#4f46e5"/>
+  <rect x="216" y="64" width="148" height="10" fill="#4f46e5"/>
+  <text x="290" y="63" text-anchor="middle" font-size="13" fill="white" font-weight="700">recipes</text>
+  <text x="230" y="92" font-size="11" fill="#374151">🔑 id</text>
+  <text x="230" y="110" font-size="11" fill="#374151">🔗 user_id</text>
+  <text x="230" y="128" font-size="11" fill="#374151">title</text>
+  <text x="230" y="146" font-size="11" fill="#374151">description</text>
+  <text x="230" y="164" font-size="11" fill="#374151">instructions</text>
+  <text x="230" y="182" font-size="11" fill="#374151">photo_url</text>
+
+  <!-- recipe_ingredients join table -->
+  <rect x="276" y="252" width="160" height="114" rx="7" fill="white" stroke="#7c3aed" stroke-width="1.5" stroke-dasharray="6,2"/>
+  <rect x="276" y="252" width="160" height="30" rx="7" fill="#7c3aed"/>
+  <rect x="276" y="272" width="160" height="10" fill="#7c3aed"/>
+  <text x="356" y="271" text-anchor="middle" font-size="12" fill="white" font-weight="700">recipe_ingredients</text>
+  <text x="290" y="300" font-size="11" fill="#374151">🔗 recipe_id</text>
+  <text x="290" y="318" font-size="11" fill="#374151">🔗 ingredient_id</text>
+  <text x="290" y="336" font-size="11" fill="#374151">quantity</text>
+  <text x="290" y="354" font-size="11" fill="#374151">unit</text>
+
+  <!-- ingredients table -->
+  <rect x="476" y="44" width="148" height="114" rx="7" fill="white" stroke="#4f46e5" stroke-width="1.5"/>
+  <rect x="476" y="44" width="148" height="30" rx="7" fill="#4f46e5"/>
+  <rect x="476" y="64" width="148" height="10" fill="#4f46e5"/>
+  <text x="550" y="63" text-anchor="middle" font-size="13" fill="white" font-weight="700">ingredients</text>
+  <text x="490" y="92" font-size="11" fill="#374151">🔑 id</text>
+  <text x="490" y="110" font-size="11" fill="#374151">name</text>
+  <text x="490" y="128" font-size="11" fill="#374151">category</text>
+  <text x="490" y="146" font-size="11" fill="#374151">description</text>
+
+  <!-- ingredient_locations table -->
+  <rect x="476" y="220" width="224" height="148" rx="7" fill="white" stroke="#059669" stroke-width="1.5"/>
+  <rect x="476" y="220" width="224" height="30" rx="7" fill="#059669"/>
+  <rect x="476" y="240" width="224" height="10" fill="#059669"/>
+  <text x="588" y="239" text-anchor="middle" font-size="13" fill="white" font-weight="700">ingredient_locations</text>
+  <text x="490" y="268" font-size="11" fill="#374151">🔑 id</text>
+  <text x="490" y="286" font-size="11" fill="#374151">🔗 ingredient_id</text>
+  <text x="490" y="304" font-size="11" fill="#374151">store_name</text>
+  <text x="490" y="322" font-size="11" fill="#374151">suburb</text>
+  <text x="490" y="340" font-size="11" fill="#374151">lat / lng</text>
+  <text x="490" y="358" font-size="11" fill="#374151">confirmed_by</text>
+
+  <!-- Relationships -->
+
+  <!-- users → recipes (1:many) -->
+  <line x1="168" y1="120" x2="214" y2="120" stroke="#4f46e5" stroke-width="1.5" marker-end="url(#arr)"/>
+  <text x="186" y="113" text-anchor="middle" font-size="10" fill="#4f46e5">1:M</text>
+
+  <!-- recipes → recipe_ingredients -->
+  <line x1="290" y1="194" x2="330" y2="250" stroke="#7c3aed" stroke-width="1.5" marker-end="url(#arr)"/>
+
+  <!-- ingredients → recipe_ingredients -->
+  <line x1="510" y1="158" x2="436" y2="260" stroke="#7c3aed" stroke-width="1.5" marker-end="url(#arr)"/>
+
+  <!-- ingredients → ingredient_locations -->
+  <line x1="550" y1="158" x2="550" y2="218" stroke="#059669" stroke-width="1.5" marker-end="url(#arr-g)"/>
+  <text x="560" y="192" font-size="10" fill="#059669">1:M</text>
+
+  <!-- Legend -->
+  <rect x="20" y="338" width="10" height="10" fill="none" stroke="#7c3aed" stroke-width="1.5" stroke-dasharray="4,2"/>
+  <text x="34" y="348" font-size="10" fill="#555">join table</text>
+  <text x="34" y="362" font-size="10" fill="#555">🔑 primary key   🔗 foreign key</text>
+</svg>
