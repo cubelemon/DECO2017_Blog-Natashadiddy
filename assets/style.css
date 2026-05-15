@@ -1,246 +1,352 @@
+/* ── Tokens ── */
 :root {
-  --max-width: 800px;
+  --page-width: 720px;
+  --cover-height: 240px;
+  --icon-size: 72px;
+  --icon-overlap: 36px;
 
-  color-scheme: light dark;
-  --light-bg: #f5f5f5;
-  --light-surface: #ffffff;
-  --light-text: #111111;
-  --light-muted: #666666;
-  --light-border: #e0e0e0;
-  --light-accent: #4f46e5;
-  --light-accent-soft: #ede9fe;
+  --bg:         #ffffff;
+  --text:       #37352f;
+  --muted:      #9b9a97;
+  --border:     #e9e9e7;
+  --hover-bg:   #f1f0ef;
+  --accent:     #2383e2;
+  --tag-bg:     #f1f0ef;
+  --tag-text:   #37352f;
 
-  --dark-bg: #0f0f0f;
-  --dark-surface: #1a1a1a;
-  --dark-text: #eeeeee;
-  --dark-muted: #999999;
-  --dark-border: #2a2a2a;
-  --dark-accent: #818cf8;
-  --dark-accent-soft: #1e1b4b;
+  /* Cover: swap background-image here once you have the photo */
+  --cover-gradient: linear-gradient(135deg, #f5f0ea 0%, #e5d9c8 55%, #d6c8b0 100%);
 }
 
-* {
-  box-sizing: border-box;
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg:       #191919;
+    --text:     #cfcec9;
+    --muted:    #706e6b;
+    --border:   #2f2f2f;
+    --hover-bg: #252525;
+    --accent:   #529cca;
+    --tag-bg:   #2f2f2f;
+    --tag-text: #cfcec9;
+    --cover-gradient: linear-gradient(135deg, #2a2520 0%, #1f1c18 55%, #181510 100%);
+  }
 }
+
+/* ── Reset ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
-  font-family: system-ui, sans-serif;
-  background: light-dark(var(--light-bg), var(--dark-bg));
-  color: light-dark(var(--light-text), var(--dark-text));
-  margin: 0;
-  line-height: 1.6;
+  font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI",
+               Helvetica, Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.65;
+  font-size: 16px;
 }
 
-/* ── Site Header ── */
-
-.site-header {
-  background: light-dark(var(--light-surface), var(--dark-surface));
-  border-bottom: 1px solid light-dark(var(--light-border), var(--dark-border));
-  padding: 0 2rem;
-}
-
-.site-nav {
-  max-width: var(--max-width);
-  margin: auto;
-  padding: 0.9rem 0;
+/* ── Breadcrumb nav ── */
+.notion-breadcrumb {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+  padding: 0.55rem 1.5rem;
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  font-size: 0.9rem;
+  gap: 0.4rem;
+  font-size: 0.8rem;
+  color: var(--muted);
+  line-height: 1;
 }
 
-.nav-home {
-  color: light-dark(var(--light-accent), var(--dark-accent));
-  text-decoration: none;
-  font-weight: 600;
-}
-
-.nav-home:not(a) {
-  color: light-dark(var(--light-text), var(--dark-text));
-}
-
-.nav-sep {
-  color: light-dark(var(--light-muted), var(--dark-muted));
-}
-
-.nav-week {
-  color: light-dark(var(--light-accent), var(--dark-accent));
+.bc-link {
+  color: var(--muted);
   text-decoration: none;
 }
+.bc-link:hover { color: var(--text); }
 
-.nav-current {
-  color: light-dark(var(--light-muted), var(--dark-muted));
+.bc-sep { opacity: 0.45; }
+
+.bc-current {
+  color: var(--text);
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  max-width: 360px;
 }
 
-/* ── Main layout ── */
-
-main {
-  max-width: var(--max-width);
-  margin: auto;
-  padding: 2rem;
+/* ── Cover ── */
+.page-cover {
+  width: 100%;
+  height: var(--cover-height);
+  background: var(--cover-gradient);
 }
 
-a {
-  color: light-dark(var(--light-accent), var(--dark-accent));
+.page-cover--home {
+  background-image: url('cover-home.png');
+  background-size: cover;
+  background-position: top;
 }
 
-/* ── Index hero ── */
-
-.index-hero {
-  padding: 2.5rem 0 1.5rem;
-  border-bottom: 1px solid light-dark(var(--light-border), var(--dark-border));
-  margin-bottom: 2rem;
+/* ── Page icon ── */
+.page-icon-wrap {
+  max-width: var(--page-width);
+  margin: 0 auto;
+  padding: 0 3rem;
 }
 
-.index-hero h1 {
-  margin: 0 0 0.25rem;
-  font-size: 2rem;
+.page-icon {
+  font-size: var(--icon-size);
+  line-height: 1;
+  display: block;
+  margin-top: calc(-1 * var(--icon-overlap));
+  margin-bottom: 0.5rem;
+  user-select: none;
 }
 
-.index-subtitle {
-  margin: 0;
-  color: light-dark(var(--light-muted), var(--dark-muted));
+/* ── Page body ── */
+.notion-page {
+  max-width: var(--page-width);
+  margin: 0 auto;
+  padding: 0 3rem 5rem;
+}
+
+/* ── Page title ── */
+.page-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  margin-bottom: 0.4rem;
+}
+
+/* ── Index subtitle ── */
+.page-subtitle {
+  font-size: 0.9rem;
+  color: var(--muted);
+  margin-bottom: 2.5rem;
+}
+
+/* ── Week list (index) ── */
+.week-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+}
+
+.notion-page-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.55rem;
+  padding: 0.45rem 0.5rem;
+  border-radius: 0.3rem;
+  text-decoration: none;
+  color: var(--text);
+  transition: background 0.08s;
+}
+
+.notion-page-item:hover { background: var(--hover-bg); }
+
+.page-item-icon {
+  font-size: 1rem;
+  flex-shrink: 0;
+  margin-top: 0.2rem;
+  opacity: 0.7;
+}
+
+.page-item-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.05rem;
+}
+
+.page-item-week {
+  font-size: 0.72rem;
+  color: var(--muted);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.page-item-title {
   font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--text);
+  line-height: 1.4;
 }
 
-/* ── Week grid (index) ── */
-
-.week-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-  gap: 1rem;
-}
-
-.week-card {
+/* ── Post meta (property table style) ── */
+.post-meta-notion {
+  margin: 1.25rem 0 1.75rem;
+  padding: 0.75rem 0;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
   display: flex;
   flex-direction: column;
   gap: 0.4rem;
-  padding: 1.4rem 1.2rem;
-  background: light-dark(var(--light-surface), var(--dark-surface));
-  border: 1px solid light-dark(var(--light-border), var(--dark-border));
-  border-radius: 0.75rem;
-  text-decoration: none;
-  color: light-dark(var(--light-text), var(--dark-text));
-  transition: border-color 0.15s, box-shadow 0.15s;
 }
 
-.week-card:hover {
-  border-color: light-dark(var(--light-accent), var(--dark-accent));
-  box-shadow: 0 0 0 3px light-dark(var(--light-accent-soft), var(--dark-accent-soft));
+.meta-row {
+  display: flex;
+  align-items: baseline;
+  gap: 0;
+  font-size: 0.85rem;
 }
 
-.week-label {
-  font-size: 1.1rem;
-  font-weight: 700;
-}
-
-.week-meta {
+.meta-label {
+  width: 90px;
+  flex-shrink: 0;
+  color: var(--muted);
   font-size: 0.8rem;
-  color: light-dark(var(--light-muted), var(--dark-muted));
 }
 
-/* ── Week page title ── */
-
-.week-title {
-  margin-top: 0.5rem;
+.meta-value {
+  color: var(--text);
 }
 
-/* ── Post list ── */
+/* ── Article ── */
+article {
+  font-size: 1rem;
+  line-height: 1.75;
+  color: var(--text);
+}
 
+article p          { margin-bottom: 1rem; }
+article p:last-child { margin-bottom: 0; }
+
+article h2 {
+  font-size: 1.35rem;
+  font-weight: 600;
+  margin: 2rem 0 0.5rem;
+  letter-spacing: -0.01em;
+}
+
+article h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 1.5rem 0 0.35rem;
+}
+
+article img {
+  max-width: 100%;
+  border-radius: 0.4rem;
+  margin: 1.25rem 0;
+  display: block;
+}
+
+article a {
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+}
+article a:hover { border-bottom-color: var(--accent); }
+
+article code {
+  font-size: 0.85em;
+  background: var(--hover-bg);
+  padding: 0.1em 0.35em;
+  border-radius: 0.2rem;
+  font-family: ui-monospace, "Cascadia Code", "Source Code Pro", Menlo, monospace;
+}
+
+article pre {
+  background: var(--hover-bg);
+  border-radius: 0.4rem;
+  padding: 1.1rem 1.2rem;
+  overflow-x: auto;
+  margin: 1rem 0;
+}
+
+article pre code {
+  background: none;
+  padding: 0;
+  font-size: 0.875rem;
+}
+
+article blockquote {
+  border-left: 3px solid var(--border);
+  padding-left: 1rem;
+  color: var(--muted);
+  margin: 1rem 0;
+}
+
+article ul, article ol {
+  padding-left: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+article li { margin-bottom: 0.2rem; }
+
+/* ── Tags ── */
+.tags-notion {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin-top: 2.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border);
+}
+
+span.tag {
+  background: var(--tag-bg);
+  color: var(--tag-text);
+  border: none;
+  border-radius: 0.25rem;
+  padding: 0.18rem 0.55rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+/* ── Week page (accessible via breadcrumb) ── */
 ul.post-list {
   list-style: none;
   padding: 0;
-  margin: 0;
+  margin: 1.5rem 0 0;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
-}
-
-ul.post-list li {
-  background: light-dark(var(--light-surface), var(--dark-surface));
-  border: 1px solid light-dark(var(--light-border), var(--dark-border));
-  border-radius: 0.75rem;
-  padding: 1.2rem 1.4rem;
+  gap: 0.1rem;
 }
 
 ul.post-list li a {
-  font-size: 1.1rem;
-  font-weight: 600;
-  text-decoration: none;
-  display: block;
-  margin-bottom: 0.3rem;
-}
-
-ul.post-list li a:hover {
-  text-decoration: underline;
-}
-
-/* ── Post meta (date / author) ── */
-
-.post-meta {
   display: flex;
-  gap: 1rem;
-  flex-wrap: wrap;
-  margin-bottom: 0.5rem;
+  flex-direction: column;
+  padding: 0.55rem 0.5rem;
+  text-decoration: none;
+  color: var(--text);
+  font-weight: 500;
+  font-size: 0.95rem;
+  border-radius: 0.3rem;
+  transition: background 0.08s;
 }
+ul.post-list li a:hover { background: var(--hover-bg); }
 
-span.date::before {
-  content: "📅 ";
-}
-
-span.author::before {
-  content: "✍️ ";
-}
-
-.date,
-.author,
-span.date,
-span.author {
-  font-size: 0.8rem;
-  color: light-dark(var(--light-muted), var(--dark-muted));
-  margin: 0;
+.date, .author {
+  font-size: 0.75rem;
+  color: var(--muted);
 }
 
 p.summary {
-  margin: 0.4rem 0 0;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
+  color: var(--muted);
+  margin-top: 0.2rem;
 }
-
-/* ── Tags ── */
 
 ul.tags-list {
   padding: 0;
-  margin: 0.5rem 0 0;
+  margin: 0.4rem 0 0;
   display: flex;
   flex-wrap: wrap;
   gap: 0.25rem;
   list-style: none;
 }
 
-span.tag {
-  border: 1px solid light-dark(var(--light-accent), var(--dark-accent));
-  border-radius: 0.4rem;
-  padding: 0.1rem 0.4rem;
-  font-size: 0.7rem;
-  color: light-dark(var(--light-accent), var(--dark-accent));
-}
-
-/* ── Article content ── */
-
-article {
-  margin: 1.5rem 0;
-}
-
-article h2,
-article h3 {
-  margin-top: 2rem;
-}
-
-hr {
-  border: none;
-  border-top: 1px solid light-dark(var(--light-border), var(--dark-border));
-  margin: 1.5rem 0;
+/* ── Responsive ── */
+@media (max-width: 600px) {
+  .notion-page        { padding: 0 1.25rem 4rem; }
+  .page-icon-wrap     { padding: 0 1.25rem; }
+  .page-title         { font-size: 1.9rem; }
+  .notion-breadcrumb  { padding: 0.55rem 1rem; }
+  .bc-current         { max-width: 180px; }
 }

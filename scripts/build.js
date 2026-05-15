@@ -120,13 +120,16 @@ const sortedWeeks = Object.entries(weeks).sort(
 );
 
 const weeksHtml = sortedWeeks
-  .map(([weekNum, weekPosts]) =>
-    applyTemplate(weekCardTemplate, {
+  .map(([weekNum, weekPosts]) => {
+    const first = weekPosts[0];
+    return applyTemplate(weekCardTemplate, {
       weekNum,
       postCount: weekPosts.length,
       postCountPlural: weekPosts.length === 1 ? "" : "s",
-    }),
-  )
+      slug: first.slug,
+      title: first.title ?? "",
+    });
+  })
   .join("");
 
 const index = applyTemplate(indexTemplate, {

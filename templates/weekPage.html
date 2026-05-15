@@ -1,23 +1,29 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-    <title>Week {{weekNum}} — Natasha's Blog</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week {{weekNum}} — Natasha's Dev Blog</title>
     <link rel="stylesheet" href="assets/style.css">
 </head>
 
 <body>
 
-    <header class="site-header">
-        <nav class="site-nav">
-            <a href="index.html" class="nav-home">Natasha's Blog</a>
-            <span class="nav-sep">/</span>
-            <span class="nav-current">Week {{weekNum}}</span>
-        </nav>
-    </header>
+    <nav class="notion-breadcrumb">
+        <a href="index.html" class="bc-link">Natasha's Dev Blog</a>
+        <span class="bc-sep">/</span>
+        <span class="bc-current">Week {{weekNum}}</span>
+    </nav>
 
-    <main>
-        <h1 class="week-title">Week {{weekNum}}</h1>
+    <div class="page-cover"></div>
+
+    <div class="page-icon-wrap">
+        <span class="page-icon">🗓</span>
+    </div>
+
+    <main class="notion-page">
+        <h1 class="page-title">Week {{weekNum}}</h1>
 
         <ul class="post-list">
             {{postList}}

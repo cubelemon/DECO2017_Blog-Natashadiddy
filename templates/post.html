@@ -1,7 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{title}}</title>
     <link rel="stylesheet" href="assets/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/a11y-light.min.css" media="(prefers-color-scheme: light)">
@@ -10,35 +12,30 @@
 
 <body>
 
-    <header class="site-header">
-        <nav class="site-nav">
-            <a href="index.html" class="nav-home">Natasha's Blog</a>
-            <span class="nav-sep">/</span>
-            <a href="week{{week}}.html" class="nav-week">Week {{week}}</a>
-            <span class="nav-sep">/</span>
-            <span class="nav-current">{{title}}</span>
-        </nav>
-    </header>
+    <nav class="notion-breadcrumb">
+        <a href="index.html" class="bc-link">Natasha's Dev Blog</a>
+        <span class="bc-sep">/</span>
+        <a href="week{{week}}.html" class="bc-link">Week {{week}}</a>
+        <span class="bc-sep">/</span>
+        <span class="bc-current">{{title}}</span>
+    </nav>
 
-    <main>
-        <h1>{{title}}</h1>
+    <div class="page-cover"></div>
 
-        <div class="post-meta">
-            <span class="date">{{date}}</span>
-            <span class="author">{{author}}</span>
-        </div>
+    <div class="page-icon-wrap">
+        <span class="page-icon">📝</span>
+    </div>
 
-        <hr>
+    <main class="notion-page">
+        <h1 class="page-title">{{title}}</h1>
+
         <article>
             {{content}}
         </article>
-        <hr>
 
-        <footer>
-            <ul class="tags-list">
-                {{tags}}
-            </ul>
-        </footer>
+        <div class="tags-notion">
+            {{tags}}
+        </div>
     </main>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>

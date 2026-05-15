@@ -1,23 +1,26 @@
 ---
-title: "Picking a direction: from three ideas to one pivot"
-week: 6
-date: 2026-03-02
+title: "From a shared frustration to a product idea"
+week: 7
+date: 2026-03-09
 author: Natasha Png
-summary: How our team evaluated three concepts and landed on BrewHub, and why I already had doubts.
+summary: How a conversation about tapioca in Sydney became the concept for SEAblings, and what the core application flow looks like.
 tags:
   - concept
-  - pivoting
-  - brief
+  - application flow
+  - SEA desserts
+  - community
 ---
 
-After sharing our individual ideas, our team came together to pick a direction. We landed on Pat's idea, BrewHub, a community hub for coffee and matcha enthusiasts where people could log their daily brews, share tasting notes, and rate each other's recipes. The feed would show real-time brew logs with details like dose, grind size, water temperature, and ratio. I thought the design challenge was genuinely interesting, as it's a recipe and a personal log at the same time, which creates this tension between private data and social sharing.
+We'd been calling ourselves SEAblings from the start. Our team, Malaysian, Thai, Vietnamese, bonded early over food. We'd trade snacks in tutorials and talk about the desserts we grew up with. So when we pivoted away from BrewHub, the answer came from something I'd actually experienced.
 
-But after our tutorial discussion, I started to have doubts. Joel's feedback and the examples he gave pointed toward something more functionally distinct, a feature the community couldn't get anywhere else. And when I thought about BrewHub honestly, it felt too close to what BlaBla Corp was already giving us: a discussion board. People sharing notes and rating things is just Reddit with a coffee skin. The brief asked us to build something that genuinely served the community in a way that felt new, and I didn't think BrewHub cleared that bar.
+I mentioned wanting to make a tapioca dessert from home, something my family makes in Malaysia, and not being able to find fresh tapioca anywhere in Sydney. It sounds small but it's a genuinely frustrating problem. The knowledge of where to find these ingredients exists, it's just scattered across Facebook groups, word of mouth, and personal experience. There's no central place for it.
 
-So we had a decision to make. Keep going with a cool idea that might not fit the brief, or pivot to something with stronger functional grounding. We chose to pivot.
+That became our idea. SEAblings is a community hub where members post South East Asian dessert recipes and share where they sourced the ingredients, down to the specific store and suburb. Those locations get pinned on an interactive map. When someone views a recipe, they can see exactly where in Sydney they can find each ingredient right now, confirmed by the community.
 
-![Decision-making flowchart](assets/post2-decision-flow.svg)
+![SEAblings system map](assets/post3-system-map.svg)
 
-Looking back, I think the issue was that we were drawn to the aesthetic of the idea rather than its utility. BrewHub was interesting to design but not particularly useful in a way that was distinct from existing platforms. That realisation shaped how we approached our next idea, and we wanted something where the core feature was genuinely hard to find elsewhere.
+What makes this different from a recipe site is the ingredient map. The recipe is the context, but the map is the utility. Someone could search for pandan leaves and find every community-confirmed store in Sydney without needing to know a single recipe. That's the feature the community can't get elsewhere, and it's the one that justifies building this as its own hub rather than just posting in a Facebook group.
 
-The key question we started asking ourselves was: what does this community actually need that they can't already get? That question led us somewhere much more personal.
+Thinking through the application flow made this concrete. A user lands on the feed, browses recipes, and clicks into one. They see the recipe and a map showing where to buy each ingredient nearby. If they want to contribute, they post their own recipe and optionally add a store location for any ingredient. Other users confirm or flag those pins over time. That loop is the whole product: browse, find, cook, contribute back.
+
+The core functional requirement follows directly from that flow. The app needs to let users post recipes with ingredient locations, surface those locations on a map, and let the community keep that map accurate. Everything else is secondary to making that work.
